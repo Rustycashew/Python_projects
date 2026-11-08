@@ -3,6 +3,11 @@ try:
         tasks = file.read().splitlines()
 except FileNotFoundError:    
     tasks = []
+    
+    def write_task():
+         with open("tasks.txt" , "w") as file:
+            file.write("\n".join(tasks))    
+        
 while True:
     print("\n=====TO DO LIST=====")
     print("1. Add Task")
@@ -20,8 +25,7 @@ while True:
     if(choice == "1"):
         task = input("Enter your task: ")
         tasks.append(task)
-        with open("tasks.txt" , "w") as file:
-            file.write("\n".join(tasks))    
+        write_task()   
         print("Task added succesfully!!!")  
         input("\nPress Enter to return to the menu...")
         
@@ -45,8 +49,7 @@ while True:
 
             if 1 <= delete <= len(tasks):
                 tasks.pop(delete - 1)
-                with open("tasks.txt" , "w") as file:
-                   file.write("\n".join(tasks)) 
+                write_task()
                 print("Task deleted successfully!")
             else:
                 print("Invalid task number!")
