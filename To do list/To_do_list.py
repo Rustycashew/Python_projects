@@ -1,3 +1,5 @@
+import json
+
 try:
     with open("tasks.txt" , "r") as file:
         tasks = file.read().splitlines()
@@ -5,11 +7,11 @@ except FileNotFoundError:
     tasks = []
     
     def write_task():
-         with open("tasks.txt" , "w") as file:
-            file.write("\n".join(tasks))    
+         with open("tasks.json" , "w") as file:
+            json.dump(tasks ,file ,indent = 4)
         
 while True:
-    print("\n=====TO DO LIST=====")
+    print("\n====== TO DO LIST ======")
     print("1. Add Task")
     print("2. View Task")
     print("3. Delete Task")
